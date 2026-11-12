@@ -85,9 +85,7 @@ apply these renames: 'account_balnce' -\u003e 'account_balance', 'custmer_name' 
 ... and confirm to change the wrongly typed columns ( you will need the session ID):
 
 ```
-# curl -X POST http://localhost:8080/validate/confirm \
-> -H "Content-Type: application/json"
-{"error": "Malformed JSON payload"}root@kek:/home/dante/neural_netw/go-nn4#  curl -X POST http://localhost:8080/validate/confirm \
+kek #  curl -X POST http://localhost:8080/validate/confirm \
 > -H "Content-Type: application/json" \
 > -d '{"session_id": "ad0182708afbbe74fcfcb75b", "approved": true}' 
 {"status":"VALID","is_valid":true,"detected_headers":["customer_id","customer_name","city","age","account_balance","email","date"],"column_scores":[{"column":"customer_id","recognized":true,"confidence":0.9434328990974324},{"column":"customer_name","recognized":true,"confidence":0.9198644088832673},
