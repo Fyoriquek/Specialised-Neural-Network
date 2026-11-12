@@ -45,6 +45,9 @@ Project Structure
 
 <b><i> The pattern recognition for your CSVs you need to validate is done with the help of dataset.csv file </i></b>
 
+<br>
+</br>
+
 <i> How to run it </i> : it's all entirely developed in Go, so you just "go run main.go" 
 (I do presume you know how to use "go mod" & "go tidy" commands... )
 
@@ -144,13 +147,14 @@ customer_id,customer_name,city,age,account_balance,email,date
 
 2) Containerized solution
 
-You can also deploy it on a Docker container and if you like, deploy it on Kubernetes (but the manifests are not here, you will need to create them)
+You can also deploy it on a Docker container and if you like, deploy it on Kubernetes (but the manifests are not here, you will need to create them). You need to take care of the storage volumes even for the Docker.
 
 There is also a Dockerfile in this project, and once the image is built, you will notice it is quite minimal, barely 15mb in size. 
 
 Example: <br>
-<i> n.b: below example has no volume mounts for docker container! 
-This is homework for you.  And yes, if you put it on k8s, you need persistent storage too, to make it fully functionable. </i>
+<i> n.b: below example has no volume mounts for docker container! This is homework for you.  
+And yes, if you put it on k8s, you need persistent storage too, to make it fully functionable. </i>
+
 
 ```
 kek# docker build -t neural-network-validator .
@@ -175,8 +179,9 @@ curl -X POST http://0.0.0.0:9055/validate/csv  -F "file=@4curl/example3.csv"
 ```
 
 <br>
+</br>
 <b> n.b: The cached model is in header_validator.json, so you need to delete it for retraining. </b>
-
 <br>
+</br>
 
 <i>Fini!</i>
