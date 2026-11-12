@@ -172,5 +172,9 @@ curl -X POST http://0.0.0.0:9055/validate/csv  -F "file=@4curl/example3.csv"
  column 'customer_id' (first seen at row 1)"}],"message":"Found 1 row type validation error(s).","duration":"403.888µs"}
 ```
 
+<br>
+<b> n.b: The cached model is in header_validator.json, so you need to delete it for retraining. </b>
+
+<br>
 
 <i>Fini!</i>
