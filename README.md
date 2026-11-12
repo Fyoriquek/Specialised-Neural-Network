@@ -148,7 +148,9 @@ You can also deploy it on a Docker container and if you like, deploy it on Kuber
 
 There is also a Dockerfile in this project, and once the image is built, you will notice it is quite minimal, barely 15mb in size. 
 
-Example: 
+Example: <br>
+<i> n.b: below example has no volume mounts for docker container! 
+This is homework for you.  And yes, if you put it on k8s, you need persistent storage too, to make it fully functionable. </i>
 
 ```
 kek# docker build -t neural-network-validator .
