@@ -60,7 +60,7 @@ Project Structure
 Start it as a background process:
 
 ```
-# go run main.go  &
+kek# go run main.go  &
 [1] 17879
  Training Header Neural Network on columns: [customer_id customer_name city age account_balance email date]
 column rules infer: map[account_balance:{numeric 0x141e737ac450 0x141e737ac458  false} age:{numeric 0x141e737ac320 0x141e737ac328  false} city:{string <nil> <nil>  false} customer_id:{numeric 0x141e73637e40 <nil>  true} customer_name:{string <nil> <nil>  false} date:{date <nil> <nil> 2006-01-02 false} email:{email <nil> <nil>  false}]
@@ -70,14 +70,14 @@ Saved header validator weights to header_validator.json
 
 Under folder 4curl/ you have a few CSVs for testing:
 ```
-# ls 4curl/
+kek# ls 4curl/
 example1.csv  example2.csv  example3.csv
 ```
 
 example1.csv has two columns wrongly typed. 
 Let's see if the nn can find them:
 ```
-4# curl -X POST http://localhost:8080/validate/csv  -F "file=@4curl/example1.csv"
+kek# curl -X POST http://localhost:8080/validate/csv  -F "file=@4curl/example1.csv"
 {"status":"REQUIRES_CONFIRMATION","is_valid":false,"detected_headers":["customer_id","custmer_name","city","age","account_balnce","email","date"],"column_scores":[{"column":"customer_id","recognized":true,"confidence":0.9434328990974324},{"column":"custmer_name","recognized":false,"confidence":0.00014154973216475724},
 {"column":"city","recognized":true,"confidence":0.9699381526992603},{"column":"age","recognized":true,"confidence":0.9823877829235843},
 {"column":"account_balnce","recognized":false,"confidence":5.836974438225906e-7},{"column":"email","recognized":true,"confidence":0.9917857748710058},
@@ -85,10 +85,10 @@ Let's see if the nn can find them:
 apply these renames: 'account_balnce' -\u003e 'account_balance', 'custmer_name' -\u003e 'customer_name'?","duration":"534.115µs"}
 ```
 
-... and confirm to change the wrongly typed columns ( you will need the session ID):
+... and confirm to change the wrongly typed columns ( you will need the session ID from the previous output ):
 
 ```
-kek #  curl -X POST http://localhost:8080/validate/confirm \
+kek#  curl -X POST http://localhost:8080/validate/confirm \
 > -H "Content-Type: application/json" \
 > -d '{"session_id": "ad0182708afbbe74fcfcb75b", "approved": true}' 
 {"status":"VALID","is_valid":true,"detected_headers":["customer_id","customer_name","city","age","account_balance","email","date"],"column_scores":[{"column":"customer_id","recognized":true,"confidence":0.9434328990974324},{"column":"customer_name","recognized":true,"confidence":0.9198644088832673},
@@ -162,14 +162,14 @@ kek# docker build -t neural-network-validator .
 kek# #check image
 kek# docker images | grep neural
 neural-network-validator   latest    bbbf89cccxx   About an hour ago   14.9MB
-kek # # build a detached container that will validate a local file of your machine
-kek #  docker run -p 9055:8080 -d  neural-network-validator:latest
+kek# # build a detached container that will validate a local file of your machine
+kek#  docker run -p 9055:8080 -d  neural-network-validator:latest
 < ... snip ... >
-kek # docker ps
+kek# docker ps
 CONTAINER ID   IMAGE                             COMMAND                  CREATED         STATUS         PORTS                                         NAMES
 9999855967   neural-network-validator:latest   "/app/csv-neural-net…"   8 seconds ago   Up 7 seconds   0.0.0.0:9055->8080/tcp, [::]:9055->8080/tcp   heuristic_smiork
-k3k # # and check if it can find the duplicates from 4curl/example2.csv
-curl -X POST http://0.0.0.0:9055/validate/csv  -F "file=@4curl/example3.csv"
+k3k# # and check if it can find the duplicates from 4curl/example2.csv
+kek# curl -X POST http://0.0.0.0:9055/validate/csv  -F "file=@4curl/example3.csv"
 {"status":"TYPE_VALIDATION_FAILED","is_valid":false,"detected_headers":["customer_id","customer_name","city","age","account_balance","email","date"],"column_scores":
 [{"column":"customer_id","recognized":true,"confidence":0.949176765568842},{"column":"customer_name","recognized":true,"confidence":0.9365634078249371},
 {"column":"city","recognized":true,"confidence":0.9625704828814533},{"column":"age","recognized":true,"confidence":0.9751262962027623},
