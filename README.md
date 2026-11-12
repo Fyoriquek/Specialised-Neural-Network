@@ -1,7 +1,7 @@
 # Specialised-Neural-Network
 
 
-The code of this repo implements and end-to-end Go system, combining custom Gonum neural networks, fuzzy agentic schema repair, strict row validation, and a clean HTTP pipeline. It also has an endpoint for downloading the validated/changed CSVs, in order to be integrated for further automation in data pipelines. 
+The code of this repo implements an end-to-end Go system, combining custom Gonum neural networks, fuzzy agentic schema repair, strict row validation, and a clean HTTP pipeline. It also has an endpoint for downloading the validated/changed CSVs, in order to be integrated for further automation in data pipelines. 
 
 It's purpose is to be a Neural Network with an agentic layer for CSV Data Validation. (a small prototype for now)
 
