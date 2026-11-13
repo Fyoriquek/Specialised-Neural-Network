@@ -49,7 +49,7 @@ Project Structure
 </br>
 
 <i> How to run it </i> : it's all entirely developed in Go, so you just "go run main.go" 
-(I do presume you know how to use "go mod" & "go tidy" commands... )
+(I do presume you know how to use "go mod init" & "go mod tidy" commands... )
 
 ---
 
